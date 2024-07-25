@@ -7,7 +7,7 @@ const NewBlog = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post('http://localhost:5000/api/blogs', { title, content });
+    await axios.post('http://localhost:5000/blogs', { title, content });
     window.location.href = '/';
   };
 

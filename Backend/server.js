@@ -33,6 +33,11 @@ app.get('/blogs', async (req, res) => {
   res.send(blogs);
 });
 
+app.get('/blogs/:id', async (req, res) => {
+  const blog = await Blog.findById(req.params.id);
+  res.send(blog);
+})  
+
 app.post('/blogs/:id/like', async (req, res) => {
   const blog = await Blog.findById(req.params.id);
   blog.likes += 1;
