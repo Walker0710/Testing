@@ -1,13 +1,23 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './Com/Navbar';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './pages/Home';
+import BlogPage from './pages/BlogPage';
+import UserProfile from './pages/UserProfile';
+import Login from './components/Login';
+import Register from './components/Register';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Navbar />} />
-      </Routes>
+      <Navbar />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/blogs/:id" component={BlogPage} />
+        <Route path="/profile" component={UserProfile} />
+      </Switch>
     </Router>
   );
 }
