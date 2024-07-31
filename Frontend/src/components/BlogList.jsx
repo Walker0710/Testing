@@ -62,7 +62,9 @@ const BlogList = () => {
     const fetchBlogs = async () => {
       try {
         const res = await axios.get('/api/blogs');
-        setBlogs(res.data);  // Ensure the response is an array
+        setBlogs(res.data);
+        console.log(typeof(blogs));
+        console.log(blogs);
       } catch (err) {
         setError('Error fetching blogs');
       } finally {
