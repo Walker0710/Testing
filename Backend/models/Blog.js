@@ -29,5 +29,5 @@ const blogSchema = new mongoose.Schema({
   comments: [commentSchema],
 });
 
-const Blog = mongoose.model('Blog', blogSchema);
+const Blog = mongoose.model('Blog', blogSchema, 'Blog');
 module.exports = Blog;
