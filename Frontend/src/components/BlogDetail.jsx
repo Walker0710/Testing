@@ -10,7 +10,7 @@ function BlogDetail() {
 
   useEffect(() => {
     const fetchBlog = async () => {
-      const response = await axios.get(`/api/blogs/${id}`);
+      const response = await axios.get(`http://localhost:5000/api/blogs/${id}`);
       setBlog(response.data);
       setComments(response.data.comments);
     };
@@ -19,7 +19,7 @@ function BlogDetail() {
   }, [id]);
 
   const handleCommentSubmit = async (comment) => {
-    const response = await axios.post(`/api/blogs/${id}/comments`, { comment });
+    const response = await axios.post(`http://localhost:5000/api/blogs/${id}/comments`, { comment });
     setComments([...comments, response.data]);
   };
 

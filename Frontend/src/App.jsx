@@ -6,6 +6,7 @@ import UserProfile from './pages/UserProfile';
 import Login from './components/Login';
 import Register from './components/Register';
 import Navbar from './components/Navbar';
+import BlogList from './components/BlogList';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/blogs" element={<BlogList />} />
         <Route path="/blogs/:id" element={<BlogPage />} />
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/login" element={<Login />} />
