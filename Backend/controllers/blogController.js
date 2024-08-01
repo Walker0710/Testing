@@ -29,6 +29,7 @@ exports.commentOnBlog = async (req, res) => {
   }
 };
 
+
 exports.getBlogs = async (req, res) => {
   try {
     // const blogs = await Blog.find().populate('author', 'username');
