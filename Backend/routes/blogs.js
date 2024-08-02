@@ -1,4 +1,3 @@
-// routes/blogs.js
 const express = require('express');
 const { getBlogs, getBlog, createBlog, commentOnBlog } = require('../controllers/blogController');
 const auth = require('../middlewares/auth');
