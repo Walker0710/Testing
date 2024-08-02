@@ -70,30 +70,59 @@
 
 // module.exports = auth;
 
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 
-const auth = (req, res, next) => {
-  const authHeader = req.header('Authorization');
+// const auth = (req, res, next) => {
+//   const authHeader = req.header('Authorization');
   
-  if (!authHeader) {
-    console.log('Authorization header is missing');
-    return res.status(401).json({ message: 'Authorization header is missing' });
-  }
+//   if (!authHeader) {
+//     console.log('Authorization header is missing');
+//     return res.status(401).json({ message: 'Authorization header is missing' });
+//   }
 
-  const token = authHeader.split(' ')[1];
+//   const token = authHeader.split(' ')[1];
+
+//   if (!token) {
+//     console.log('Token is missing');
+//     return res.status(401).json({ message: 'Token is missing' });
+//   }
+
+//   try {
+//     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+//     req.user = decoded;
+//     next();
+//   } catch (err) {
+//     console.log('Invalid token');
+//     return res.status(401).json({ message: 'Invalid token' });
+//   }
+// };
+
+// module.exports = auth;
+
+
+const jwt = require('jsonwebtoken');
+const User = require('../models/User'); // Make sure User model is imported
+
+const auth = async (req, res, next) => {
+  const token = req.header('Authorization').replace('Bearer ', '');
 
   if (!token) {
-    console.log('Token is missing');
-    return res.status(401).json({ message: 'Token is missing' });
+    return res.status(401).json({ message: 'Authorization header is missing' });
   }
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
+    const user = await User.findById(decoded.id);
+
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid token' });
+    }
+
+    req.user = user;
     next();
   } catch (err) {
-    console.log('Invalid token');
-    return res.status(401).json({ message: 'Invalid token' });
+    console.error('Authentication Error:', err);
+    res.status(401).json({ message: 'Authorization failed' });
   }
 };
 

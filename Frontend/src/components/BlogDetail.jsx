@@ -10,17 +10,34 @@
 
 //   useEffect(() => {
 //     const fetchBlog = async () => {
-//       const response = await axios.get(`http://localhost:5000/api/blogs/${id}`);
-//       setBlog(response.data);
-//       setComments(response.data.comments);
+//       try {
+//         const response = await axios.get(`http://localhost:5000/api/blogs/${id}`);
+//         setBlog(response.data);
+//         setComments(response.data.comments);
+//       } catch (error) {
+//         console.error('Error fetching the blog:', error);
+//       }
 //     };
 
 //     fetchBlog();
 //   }, [id]);
 
 //   const handleCommentSubmit = async (comment) => {
-//     const response = await axios.post(`http://localhost:5000/api/blogs/${id}/comments`, { comment });
-//     setComments([...comments, response.data]);
+//     try {
+//       const token = localStorage.getItem('token');
+//       const response = await axios.post(
+//         `http://localhost:5000/api/blogs/${id}/comments`,
+//         { comment },
+//         {
+//           headers: {
+//             Authorization: `Bearer ${token}`,
+//           },
+//         }
+//       );
+//       setComments([...comments, response.data]);
+//     } catch (error) {
+//       console.error('Error adding the comment:', error);
+//     }
 //   };
 
 //   if (!blog) return <div>Loading...</div>;
@@ -81,7 +98,7 @@ function BlogDetail() {
           },
         }
       );
-      setComments([...comments, response.data]);
+      setComments([...comments, response.data.comment]);
     } catch (error) {
       console.error('Error adding the comment:', error);
     }
