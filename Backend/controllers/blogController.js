@@ -1,34 +1,6 @@
 const Blog = require('../models/Blog');
 const User = require('../models/User');
 
-// exports.commentOnBlog = async (req, res) => {
-//   const { blogId } = req.params;
-//   const { comment } = req.body;
-
-//   try {
-//     const blog = await Blog.findById(blogId);
-
-//     if (!blog) {
-//       return res.status(404).json({ message: 'Blog not found' });
-//     }
-
-//     const newComment = {
-//       username: req.user.username,
-//       text: comment,
-//       createdAt: new Date(),
-//     };
-
-//     blog.comments.push(newComment);
-//     await blog.save();
-
-//     res.status(201).json({ message: 'Comment added', blog });
-//   } catch (err) {
-//     console.error(err);
-//     // res.status(500).json({ message: 'Server error' });
-//     console.log(err);
-//   }
-// };
-
 exports.commentOnBlog = async (req, res) => {
   const { blogId } = req.params;
   const { comment } = req.body;
