@@ -1,0 +1,55 @@
+.rec-container {
+    display: flex;
+    flex-direction: column;
+    background: #243137;
+    width: 1800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rec-heading {
+    margin-top: 150px;
+    color: #bd9f67;
+    margin-bottom: 50px;
+    font-family: "Neuton", serif;
+    font-weight: 500;
+    font-size: 55px;
+}
+
+.rec-content {
+    width: 800px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    margin-bottom: 70px;
+}
+
+.rec-card-container {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 50px;
+}
+
+.rec-card {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    background: #eff6e0;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.rec-card-img {
+    margin-bottom: 20px;
+}
+
+.rec-card-heading {
+    margin-bottom: 10px;
+}
+
+.rec-card-content {
+    margin-bottom: 15px;
+}
+
+.rec-button {
+    margin: 50px;
+}

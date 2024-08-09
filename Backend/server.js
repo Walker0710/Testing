@@ -18,6 +18,7 @@ app.use(cors({
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/blogs', require('./routes/blogs'));
 app.use('/api/users', require('./routes/user'));
+app.use('/api/overflows', require('./routes/overflows'));
 
 const PORT = process.env.PORT || 5000;
 

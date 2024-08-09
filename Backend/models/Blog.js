@@ -45,6 +45,7 @@ const blogSchema = new mongoose.Schema({
   author: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
   comments: [commentSchema],
+  img:{ type: String, required: true }
 });
 
 const Blog = mongoose.model('Blog', blogSchema, 'Blog');

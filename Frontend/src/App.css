@@ -1,20 +1,13 @@
-/* src/App.css */
-.App {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  text-align: center;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'PT Sans', sans-serif;
+  justify-content: center;
+  align-items: center;
 }
 
-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  border: none;
-  background: #007bff;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
+.body {
+  background: #fff;
 }
 
-button:hover {
-  background: #0056b3;
-}
