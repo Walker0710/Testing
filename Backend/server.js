@@ -1,27 +1,26 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const connectDB = require('./config/db');
+const gameRoutes = require('./routes/game');
+const dbConfig = require('./config/db');
 const cors = require('cors');
 
 dotenv.config();
 
 const app = express();
 
-connectDB();
+const PORT = process.env.PORT || 5000;
+
+dbConfig();
 
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:5173',
-    credentials: true,
+  origin: 'http://localhost:5173',
+  credentials: true,
 }));
 
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/blogs', require('./routes/blogs'));
-app.use('/api/users', require('./routes/user'));
-app.use('/api/overflows', require('./routes/overflows'));
+app.use('/api/game', protect, gameRoutes);
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

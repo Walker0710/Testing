@@ -1,52 +1,27 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Navbar from './components/Navbar/Navbar';
-import Footer from './components/Footer/Footer';
-import Home from './Pages/Home/Home';
-import Student from './Pages/Student/Student';
-import BlogDetail from './components/BlogCom/BlogDetail';
-import NewBlog from './components/BlogCom/NewBlog';
-import Blog from './Pages/Blog/Blog';
-import UserProfile from './Pages/UserProfile/UserProfile';
-import Login from './components/BlogCom/Login';
-import Register from './components/BlogCom/Register';
-import NewOverflow from './components/OverflowCom/NewOverflow';
-import OverflowDetail from './components/OverflowCom/OverflowDetail';
-import Overflow from './Pages/Overflow/Overflow'
-
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, AuthContext } from './context/AuthContext';
+import { GameProvider } from './context/GameContext';
+import HomePage from './pages/HomePage';
+import GamePage from './pages/GamePage';
+import ScorePage from './pages/ScorePage';
 import './App.css';
 
-function AppContent() {
-  const location = useLocation();
-  const hideNavbarAndFooter = location.pathname === '/login' || location.pathname === '/register';
-
-  return (
-    <>
-      {!hideNavbarAndFooter && <Navbar />}
-      <Routes>
-        <Route path='/' exact element={<Home />} />
-        <Route path='/student' exact element={<Student />} />
-        <Route path='/blogs' exact element={<Blog />} />
-        <Route path='/blogs/:id' exact element={<BlogDetail />} />
-        <Route path='/blogs/new' exact element={<NewBlog />} />
-        <Route path='/overflows' exact element={<Overflow />} />
-        <Route path='/overflows/:id' exact element={<OverflowDetail />} />
-        <Route path='/overflows/new' exact element={<NewOverflow />} />
-        <Route path='/profile' exact element={<UserProfile />} />
-        <Route path='/login' exact element={<Login />} />
-        <Route path='/register' exact element={<Register />} />
-      </Routes>
-      {!hideNavbarAndFooter && <Footer />}
-    </>
-  );
-}
-
-function App() {
+const App = () => {
   return (
     <Router>
-      <AppContent />
+      <AuthProvider>
+        <GameProvider>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/game" element={<PrivateRoute><GamePage /></PrivateRoute>} />
+            <Route path="/score" element={<PrivateRoute><ScorePage /></PrivateRoute>} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </GameProvider>
+      </AuthProvider>
     </Router>
   );
-}
+};
 
 export default App;
